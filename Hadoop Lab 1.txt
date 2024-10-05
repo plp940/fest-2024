@@ -1,0 +1,78 @@
+Practical 1
+
+Step 1: Start Hadoop Services
+
+start-dfs.sh
+start-yarn.sh
+
+
+Step 2: Create a Directory in HDFS
+
+hdfs dfs -mkdir -p /user/hadoop
+
+
+
+
+Step 3: Prepare a Sample Text File
+
+echo "Hello Hadoop. Welcome to Big Data processing with Hadoop." > sample.txt
+
+
+
+Step 4: Upload the Sample Text File to HDFS
+
+hdfs dfs -put sample.txt /user/hadoop/
+
+
+
+Step 5: Verify the Upload
+
+hdfs dfs -ls /user/hadoop/
+
+
+
+Step 6: Run a MapReduce Job
+
+hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar wordcount /user/hadoop/sample.txt /user/hadoop/output
+
+
+Step 7: View the Output
+
+hdfs dfs -cat /user/hadoop/output/part-r-00000
+
+
+
+
+Step 9: Clean Up HDFS
+
+# Remove the directory containing the output of the MapReduce job
+hdfs dfs -rm -r /user/hadoop/output
+
+# Optionally, remove the sample text file if it is no longer needed
+hdfs dfs -rm /user/hadoop/sample.txt
+
+
+
+Step 10: Start Hadoop Services
+
+stop-dfs.sh
+stop-yarn.sh
+
+
+
+
+
+
+Practical 2
+
+
+Step 1: Start Hadoop Services
+
+start-dfs.sh
+start-yarn.sh
+
+
+Step 2: Run the Pi Estimator Job
+
+hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar pi 16 1000000
+
